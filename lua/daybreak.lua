@@ -43,14 +43,14 @@ function M.setup(_)
       .. ' --object-path=/org/freedesktop/portal/desktop'
       .. ' --method=org.freedesktop.portal.Settings.Read'
       .. ' org.freedesktop.appearance color-scheme'
-  local file = io.popen(gdbus_read)
-  if file ~= nil then
-    local output = file:read('*a')
-    local exit = file:close()
-    if exit ~= true then
+  local gdbus_stdout = io.popen(gdbus_read)
+  if gdbus_stdout ~= nil then
+    local stdout_str = gdbus_stdout:read('*a')
+    local exit_success = gdbus_stdout:close()
+    if exit_success ~= true then
       print('gdbus command failed')
     end
-    set_background(output, #'(<<uint32 ' + 1)
+    set_background(stdout_str, #'(<<uint32 ' + 1)
   else
     print('can\'t execute gdbus')
   end
