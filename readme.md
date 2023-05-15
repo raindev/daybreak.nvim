@@ -17,5 +17,5 @@ Using any other plugin manager add `raindev/daybreak.nvim` and load the plugin w
    - [ ] macOS
    - [ ] windows
 2. Event based, no polling.
-3. Support Linux, macOS and Windows (planned).
+3. Support Linux, macOS and Windows.
 4. Zero configuration.
