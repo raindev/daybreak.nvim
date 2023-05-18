@@ -28,18 +28,22 @@ function M.setup()
     vim.opt.background = 'light'
   end
 
-  if vim.fn.executable('./appearance') == 0 then
+  -- strip @ prefix and get the files parent dir
+  local plugin_dir = debug.getinfo(1, "S").source:sub(2):match("(.*)/.*/.*")
+  local watcher_path = plugin_dir .. '/appearance'
+  if vim.fn.executable(watcher_path) == 0 then
     if vim.fn.executable('swiftc') == 0 then
       return
     end
-    local swiftc_status = os.execute('swiftc ./macos/appearance.swift')
+    local source_path = plugin_dir .. '/macos/appearance.swift'
+    local swiftc_status = os.execute('swiftc ' .. source_path)
     if swiftc_status ~= 0 then
       print('watcher compilation failed')
       return
     end
   end
 
-  vim.fn.jobstart('./appearance', { on_stdout = process_update })
+  vim.fn.jobstart(watcher_path, { on_stdout = process_update })
 end
 
 return M
