@@ -36,7 +36,8 @@ function M.setup()
       return
     end
     local source_path = plugin_dir .. '/macos/appearance.swift'
-    local swiftc_status = os.execute('swiftc ' .. source_path)
+    local swiftc_status = os.execute(
+      'swiftc ' .. source_path .. ' -o ' .. watcher_path)
     if swiftc_status ~= 0 then
       print('watcher compilation failed')
       return

@@ -14,7 +14,7 @@ Using any other plugin manager add `raindev/daybreak.nvim` and load the plugin w
 
 1. Immediately pick up appearance changes.
    - [x] Linux
-   - [ ] macOS
+   - [x] macOS
    - [ ] windows
 2. Event based, no polling.
 3. Support Linux, macOS and Windows.
