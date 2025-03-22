@@ -1,31 +1,38 @@
 local M = {}
 
 local last_string = '';
-local function process_update(_, data, _)
-  if #data == 1 and data[1] == '' then
-    print('appearance watcher died')
-    return
-  end
 
-  -- data can have incomplete lines between consecutive calls separated with ''
-  -- complete the previous line first
-  vim.opt.background = last_string .. data[1]
-  -- normally only a single line will be passed at a time
-  for i = 2, #data - 1 do
-    vim.opt.background = data[i]
-  end
-  -- hold the final line (empty if all lines were complete)
-  last_string = data[#data]
-end
-
-function M.setup()
+function M.setup(sunrise, sunset)
   local defaults_cmd = 'defaults read -g AppleInterfaceStyle'
   -- the command returns 'Dark' for dark mode and fails otherwise with
   -- The domain/default pair of (kCFPreferencesAnyApplication, AppleInterfaceStyle) does not exist
   if os.execute(defaults_cmd) == 0 then
-    vim.opt.background = 'dark'
+    sunset()
   else
-    vim.opt.background = 'light'
+    sunrise()
+  end
+  local change_appearance = function(background)
+    if background == 'light' then
+      sunrise()
+    else
+      sunset()
+    end
+  end
+  local function process_update(_, data, _)
+    if #data == 1 and data[1] == '' then
+      print('appearance watcher died')
+      return
+    end
+
+    -- data can have incomplete lines between consecutive calls separated with ''
+    -- complete the previous line first
+    change_appearance(last_string .. data[1])
+    -- normally only a single line will be passed at a time
+    for i = 2, #data - 1 do
+      change_appearance(data[i])
+    end
+    -- hold the final line (empty if all lines were complete)
+    last_string = data[#data]
   end
 
   -- strip @ prefix and get the files parent dir

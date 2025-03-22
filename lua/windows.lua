@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.setup(sunrise, sunset)
   local reg_cmd = 'reg query'
       .. ' HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize'
       .. ' /v AppsUseLightTheme'
@@ -21,6 +21,11 @@ function M.setup()
     return
   end
   vim.opt.background = value == '1' and 'light' or 'dark'
+  if value == 1 then
+    sunrise()
+  else
+    sunset()
+  end
 end
 
 return M
