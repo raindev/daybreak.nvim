@@ -8,14 +8,12 @@ function M.setup(opts)
   local sunrise = function()
     vim.opt.background = 'dark'
     if opts and opts.light then
-      print('and the sun rises')
       vim.cmd('colorscheme ' .. opts.light)
     end
   end
   local sunset = function()
     vim.opt.background = 'dark'
     if opts and opts.dark then
-      print('going dark')
       vim.cmd('colorscheme ' .. opts.dark)
     end
   end
