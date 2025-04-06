@@ -7,7 +7,7 @@ A Neovim Lua plugin that matches the colorscheme background with the system dark
 When using [lazy.nvim](https://github.com/folke/lazy.nvim) just include `raindev/daybreak.nvim` into the list of plugins:
 
 ```lua
-    'raindev/daybreak.nvim'
+'raindev/daybreak.nvim'
 ```
 
 With different light and dark themes (make sure you don't also set
@@ -17,8 +17,8 @@ With different light and dark themes (make sure you don't also set
 {
   'raindev/daybreak.nvim',
   opts = {
-	 light = 'github_light_default',
-	 dark = 'github_dark_default',
+    light = 'github_light_default',
+    dark = 'github_dark_default',
   }
 }
 ```
@@ -27,8 +27,8 @@ Using any other plugin manager add `raindev/daybreak.nvim` and load the plugin w
 
 ```lua
 require('daybreak').setup({
-   light = 'github_light_default',
-   dark = 'github_dark_default',
+  light = 'github_light_default',
+  dark = 'github_dark_default',
 })
 ```
 
