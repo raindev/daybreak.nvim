@@ -37,12 +37,12 @@ function M.setup(sunrise, sunset)
 
   -- strip @ prefix and get the files parent dir
   local plugin_dir = debug.getinfo(1, "S").source:sub(2):match("(.*)/.*/.*")
-  local watcher_path = plugin_dir .. '/appearance'
+  local watcher_path = plugin_dir .. '/../appearance'
   if vim.fn.executable(watcher_path) == 0 then
     if vim.fn.executable('swiftc') == 0 then
       return
     end
-    local source_path = plugin_dir .. '/macos/appearance.swift'
+    local source_path = plugin_dir .. '/../macos/appearance.swift'
     local swiftc_status = os.execute(
       'swiftc ' .. source_path .. ' -o ' .. watcher_path)
     if swiftc_status ~= 0 then

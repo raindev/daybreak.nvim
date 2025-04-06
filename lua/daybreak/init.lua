@@ -1,10 +1,12 @@
-local gdbus = require('gdbus')
-local macos = require('macos')
-local windows = require('windows')
+local gdbus = require('daybreak.gdbus')
+local macos = require('daybreak.macos')
+local windows = require('daybreak.windows')
 
 local M = {}
+M.did_setup = false
 
 function M.setup(opts)
+  did_setup = true
   local sunrise = function()
     vim.opt.background = 'light'
     if opts and opts.light then

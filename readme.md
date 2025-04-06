@@ -4,10 +4,10 @@ A Neovim Lua plugin that matches the colorscheme background with the system dark
 
 ## Set-Up
 
-Using [lazy.nvim](https://github.com/folke/lazy.nvim):
+When using [lazy.nvim](https://github.com/folke/lazy.nvim) just include `raindev/daybreak.nvim` into the list of plugins:
 
 ```lua
-    { 'raindev/daybreak.nvim', config = true }
+    'raindev/daybreak.nvim'
 ```
 
 With different light and dark themes (make sure you don't also set
