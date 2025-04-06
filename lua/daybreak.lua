@@ -6,7 +6,7 @@ local M = {}
 
 function M.setup(opts)
   local sunrise = function()
-    vim.opt.background = 'dark'
+    vim.opt.background = 'light'
     if opts and opts.light then
       vim.cmd('colorscheme ' .. opts.light)
     end
